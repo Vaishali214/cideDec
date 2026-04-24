@@ -20,11 +20,7 @@ interface SearchAuthModalProps {
   onAuthSuccess: (query: string) => void;
 }
 
-const DEMO_ACCOUNTS = [
-  { label: 'Pro Demo',   user: 'vaishali', pw: 'DecisionAI@123' },
-  { label: 'Admin',      user: 'admin',    pw: 'admin123'        },
-  { label: 'Free Trial', user: 'demo',     pw: 'demo'            },
-];
+
 
 /* ── CideDec Logo ── */
 const CideDecLogo = () => (
@@ -114,12 +110,7 @@ export function SearchAuthModal({ pendingQuery, onClose, onAuthSuccess }: Search
     onAuthSuccess(pendingQuery);
   };
 
-  const fillDemo = (user: string, pw: string) => {
-    setUsername(user);
-    setPassword(pw);
-    setError('');
-    setMode('signin');
-  };
+
 
   return (
     <motion.div
@@ -343,26 +334,7 @@ export function SearchAuthModal({ pendingQuery, onClose, onAuthSuccess }: Search
               )}
             </AnimatePresence>
 
-            {/* Demo accounts (sign-in mode only) */}
-            {mode === 'signin' && (
-              <div className="border-t border-zinc-100 pt-4">
-                <p className="text-[10px] text-zinc-400 text-center uppercase tracking-wider mb-3">Try a demo account</p>
-                <div className="grid grid-cols-3 gap-2">
-                  {DEMO_ACCOUNTS.map(acc => (
-                    <motion.button
-                      key={acc.user}
-                      type="button"
-                      onClick={() => fillDemo(acc.user, acc.pw)}
-                      className="py-1.5 px-2 rounded-lg bg-zinc-50 border border-zinc-200 text-[11px] font-semibold text-zinc-600 hover:bg-zinc-100 hover:border-zinc-300 hover:text-zinc-900 transition-all"
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                    >
-                      {acc.label}
-                    </motion.button>
-                  ))}
-                </div>
-              </div>
-            )}
+
 
             {/* Security note */}
             <div className="flex items-center justify-center gap-1.5 pb-1">

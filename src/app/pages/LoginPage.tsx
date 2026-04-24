@@ -40,11 +40,7 @@ export function LoginPage() {
     setTimeout(() => setShake(false), 600);
   };
 
-  const demoAccounts = [
-    { label: 'Pro Demo',  user: 'vaishali', pw: 'DecisionAI@123' },
-    { label: 'Admin',     user: 'admin',    pw: 'admin123'        },
-    { label: 'Free Trial', user: 'demo',   pw: 'demo'            },
-  ];
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-violet-950 flex items-center justify-center px-4 relative overflow-hidden">
@@ -176,25 +172,7 @@ export function LoginPage() {
             </div>
           </form>
 
-          {/* Demo accounts */}
-          <div className="px-8 pb-7">
-            <div className="border-t border-white/[0.06] pt-5">
-              <p className="text-[11px] text-white/30 text-center mb-3 uppercase tracking-wider">Quick access — demo accounts</p>
-              <div className="grid grid-cols-3 gap-2">
-                {demoAccounts.map(acc => (
-                  <motion.button
-                    key={acc.user}
-                    type="button"
-                    onClick={() => { setUsername(acc.user); setPassword(acc.pw); setError(''); }}
-                    className="py-2 px-3 rounded-xl bg-white/[0.04] border border-white/[0.07] text-[11px] font-semibold text-white/50 hover:text-white/80 hover:bg-white/[0.08] hover:border-white/[0.14] transition-all"
-                    whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                  >
-                    {acc.label}
-                  </motion.button>
-                ))}
-              </div>
-            </div>
-          </div>
+
         </motion.div>
 
         {/* Footer */}
