@@ -1,0 +1,63 @@
+@import './fonts.css';
+@import './tailwind.css';
+@import './theme.css';
+
+/* ── Aurora animation for login / hero backgrounds ── */
+@keyframes aurora {
+  from { background-position: 50% 50%, 50% 50%; }
+  to   { background-position: 350% 50%, 350% 50%; }
+}
+.animate-aurora { animation: aurora 60s linear infinite; }
+
+/* ── Floating / pulse animations ── */
+@keyframes float {
+  0%,100% { transform: translateY(0px); }
+  50%      { transform: translateY(-8px); }
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+
+/* ── Node pulse for competitor map ── */
+@keyframes node-pulse {
+  0%,100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+  50%      { box-shadow: 0 0 0 12px transparent; opacity: 0.8; }
+}
+.animate-node-pulse { animation: node-pulse 2s ease-in-out infinite; }
+
+/* ── Scan line ── */
+@keyframes scan {
+  from { transform: translateY(-100%); }
+  to   { transform: translateY(100vh); }
+}
+.animate-scan { animation: scan 4s linear infinite; }
+
+/* ── Shimmer ── */
+@keyframes shimmer {
+  from { background-position: -200% 0; }
+  to   { background-position: 200% 0; }
+}
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.08) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* ── Glassmorphism card base ── */
+.glass {
+  background: rgba(255,255,255,0.04);
+  backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.glass-strong {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(32px) saturate(200%);
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+/* ── Glow utilities ── */
+.glow-cyan  { box-shadow: 0 0 20px rgba(34,211,238,0.25), 0 0 60px rgba(34,211,238,0.1); }
+.glow-violet{ box-shadow: 0 0 20px rgba(139,92,246,0.25), 0 0 60px rgba(139,92,246,0.1); }
+.glow-green { box-shadow: 0 0 20px rgba(16,185,129,0.25), 0 0 60px rgba(16,185,129,0.1); }
+
+/* ── Custom scrollbar ── */
+.scrollbar-none::-webkit-scrollbar { display: none; }
+.scrollbar-none { scrollbar-width: none; }
