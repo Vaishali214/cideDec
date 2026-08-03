@@ -251,24 +251,29 @@ app.use(errorHandler);
 // ══════════════════════════════════════════════════════════
 // 13. Start server with graceful shutdown
 // ══════════════════════════════════════════════════════════
-const server = app.listen(PORT, () => {
-  const url = process.env.NODE_ENV === 'production'
-    ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN || 'your-app.up.railway.app'}`
-    : `http://localhost:${PORT}`;
-  logger.info(`CideDec backend listening on port ${PORT} → ${url}`);
-});
+export default app;
 
-const shutdown = () => {
-  logger.info('Received shutdown signal. Closing HTTP server gracefully...');
-  server.close(() => {
-    logger.info('HTTP server closed.');
-    process.exit(0);
+if (!process.env.VERCEL) {
+  const server = app.listen(PORT, () => {
+    const url = process.env.NODE_ENV === 'production'
+      ? `https://${process.env.RAILWAY_PUBLIC_DOMAIN || 'your-app.up.railway.app'}`
+      : `http://localhost:${PORT}`;
+    logger.info(`CideDec backend listening on port ${PORT} → ${url}`);
   });
-  setTimeout(() => {
-    logger.error('Force shutdown triggered after timeout.');
-    process.exit(1);
-  }, 10000);
-};
 
-process.on('SIGINT', shutdown);
-process.on('SIGTERM', shutdown);
+  const shutdown = () => {
+    logger.info('Received shutdown signal. Closing HTTP server gracefully...');
+    server.close(() => {
+      logger.info('HTTP server closed.');
+      process.exit(0);
+    });
+    setTimeout(() => {
+      logger.error('Force shutdown triggered after timeout.');
+      process.exit(1);
+    }, 10000);
+  };
+
+  process.on('SIGINT', shutdown);
+  process.on('SIGTERM', shutdown);
+}
+
